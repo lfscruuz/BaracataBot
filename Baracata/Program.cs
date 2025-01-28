@@ -12,6 +12,7 @@ namespace Baracata
             Console.WriteLine("Environment variables loaded.");
             string botToken = Environment.GetEnvironmentVariable("DISCORD_BOT_TOKEN");
             Console.WriteLine($"Token: {botToken ?? "No token found"}");
+            Console.ReadKey();
         }
     }
 }
