@@ -11,7 +11,7 @@ namespace Baracata
 {
     internal class Program
     {
-        private static DiscordClient Client { get; set; }
+        public static DiscordClient Client { get; set; }
         static async Task Main(string[] args)
         {
             Env.Load("E:\\Users\\lfscr\\source\\repos\\Baracata\\Baracata\\.env");
