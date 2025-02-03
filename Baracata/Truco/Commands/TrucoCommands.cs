@@ -13,14 +13,16 @@ namespace Baracata.Commands.Truco
 {
     public class TrucoCommands : ApplicationCommandModule
     {
+        private string[] cards = {"zap", "7 de copas", "espadilha", "7 de ouros"};
 
         [SlashCommand("truco", "iniciar um jogo de truco")]
         public async Task InitializeTrucoCommand(InteractionContext ctx, [Option("player1", "primeiro jogador")] DiscordUser player1, [Option("player2", "segundo jogador")] DiscordUser player2)
         {
 
             var playTime = TimeSpan.FromSeconds(20);
+            var hands = new Dictionary<DiscordEmoji, string>();
             var playerMessages = new Dictionary<DiscordMember, DiscordMessage>();
-            var playerReactions = new Dictionary<DiscordMember, DiscordEmoji>();
+            var playerReactions = new Dictionary<DiscordMember, string>();
 
             await ctx.DeferAsync();
 
@@ -36,23 +38,15 @@ namespace Baracata.Commands.Truco
                                      DiscordEmoji.FromName(Program.Client, ":four:")
             };
 
-
-            //string optionsDescription = $"{emojiOptions[0]} | carta 1 \n" +
-            //                            $"{emojiOptions[1]} | carta 2 \n" +
-            //                            $"{emojiOptions[2]} | carta 3 \n" +
-            //                            $"{emojiOptions[3]} | carta 4 \n";
-
-            //DiscordEmbedBuilder embedBuilder = new DiscordEmbedBuilder
-            //{
-            //    Color = DiscordColor.Red,
-            //    Title = "escolha sua carta",
-            //    Description = optionsDescription
-            //};
+            foreach (var (card, i) in cards.Select((value, i) => (value, i)))
+            {
+                hands[emojiOptions[i]] = card;
+            }
 
             foreach (var player in players)
             {
                 DiscordDmChannel DMChannel = await player.CreateDmChannelAsync();
-                DiscordMessage sentMessage = await DMChannel.SendMessageAsync($"hello there {player.Username}");
+                DiscordMessage sentMessage = await DMChannel.SendMessageAsync($"Olá, {player.Username}");
 
                 foreach (var emoji in emojiOptions)
                 {
@@ -80,18 +74,29 @@ namespace Baracata.Commands.Truco
 
                 if (reaction.TimedOut)
                 {
-                    Console.WriteLine($"{player.Username} did not respond in time.");
+                    Console.WriteLine($"{player.Username}não respondeu a tempo.");
                 }
                 else
                 {
-                    playerReactions[player] = reaction.Result.Emoji;
-                    Console.WriteLine($"{player.Username} reacted with {reaction.Result.Emoji}");
+                    playerReactions[player] = hands[reaction.Result.Emoji];
+                    Console.WriteLine(playerReactions[player]);
+                    Console.WriteLine($"{player.Username} reagiu com {playerReactions[player]}");
                 }
             }
 
-            var responseContent = string.Join("\n", playerReactions.Select(pr => $"{pr.Key.Username} played: {pr.Value}"));
+            //AnalyseCards(playerReactions);
+
+            var responseContent = string.Join("\n", playerReactions.Select(pr => $"{pr.Key.Username} jogou a carta: {pr.Value}"));
             await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(responseContent));
 
         }
+
+        //private void AnalyseCards(Dictionary<DiscordMember, string> playerReactions)
+        //{
+        //    foreach (var kvp in playerReactions) 
+        //    { 
+        //        Console.WriteLine($"{kvp.Key} jogou {kvp.Value}");
+        //    }
+        //}
     }
 }
