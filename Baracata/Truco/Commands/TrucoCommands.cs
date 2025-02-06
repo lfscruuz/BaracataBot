@@ -1,4 +1,5 @@
-﻿using DSharpPlus.Entities;
+﻿using Baracata.Truco.Services;
+using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Extensions;
@@ -23,6 +24,7 @@ namespace Baracata.Commands.Truco
             var hands = new Dictionary<DiscordEmoji, string>();
             var playerMessages = new Dictionary<DiscordMember, DiscordMessage>();
             var playerReactions = new Dictionary<DiscordMember, string>();
+            var service = new TrucoService(ctx);
 
             await ctx.DeferAsync();
 
@@ -74,7 +76,7 @@ namespace Baracata.Commands.Truco
 
                 if (reaction.TimedOut)
                 {
-                    Console.WriteLine($"{player.Username}não respondeu a tempo.");
+                    Console.WriteLine($"{player.Username} não respondeu a tempo.");
                 }
                 else
                 {
@@ -84,19 +86,13 @@ namespace Baracata.Commands.Truco
                 }
             }
 
-            //AnalyseCards(playerReactions);
+            service.AnalyzeCards(playerReactions);
 
             var responseContent = string.Join("\n", playerReactions.Select(pr => $"{pr.Key.Username} jogou a carta: {pr.Value}"));
             await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(responseContent));
 
         }
 
-        //private void AnalyseCards(Dictionary<DiscordMember, string> playerReactions)
-        //{
-        //    foreach (var kvp in playerReactions) 
-        //    { 
-        //        Console.WriteLine($"{kvp.Key} jogou {kvp.Value}");
-        //    }
-        //}
+
     }
 }

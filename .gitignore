@@ -5,6 +5,7 @@
 
 # .ENV
 Baracata/.env
+Baracata/appsettings.json
 
 # User-specific files
 *.rsuser
