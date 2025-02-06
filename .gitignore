@@ -4,8 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # .ENV
-Baracata/.env
-Baracata/appsettings.json
+BaracataBot/.env
+BaracataBot/appsettings.json
 
 # User-specific files
 *.rsuser
