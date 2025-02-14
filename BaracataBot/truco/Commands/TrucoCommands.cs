@@ -1,4 +1,5 @@
-﻿using Baracata.Truco.Services;
+﻿using Baracata.Truco.Models;
+using Baracata.Truco.Services;
 using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.Interactivity;
@@ -14,35 +15,34 @@ namespace Baracata.Commands.Truco
 {
     public class TrucoCommands : ApplicationCommandModule
     {
-        private string[] cards = {"zap", "7 de copas", "espadilha", "7 de ouros"};
-
         [SlashCommand("truco", "iniciar um jogo de truco")]
         public async Task InitializeTrucoCommand(InteractionContext ctx, [Option("player1", "primeiro jogador")] DiscordUser player1, [Option("player2", "segundo jogador")] DiscordUser player2)
         {
-
             var playTime = TimeSpan.FromSeconds(20);
-            var hands = new Dictionary<DiscordEmoji, string>();
             var playerMessages = new Dictionary<DiscordMember, DiscordMessage>();
             var playerReactions = new Dictionary<DiscordMember, string>();
             var service = new TrucoService(ctx);
-
-            await ctx.DeferAsync();
-
-            InteractivityExtension interactivity = Program.Client.GetInteractivity();
-
-            DiscordMember[] players = new[] { player1, player2 }
-                .Select(user => (DiscordMember)user)
-                .ToArray();
+            var cards = await service.GetCards();
 
             DiscordEmoji[] emojiOptions = { DiscordEmoji.FromName(Program.Client, ":one:"),
                                      DiscordEmoji.FromName(Program.Client, ":two:"),
                                      DiscordEmoji.FromName(Program.Client, ":three:"),
                                      DiscordEmoji.FromName(Program.Client, ":four:")
             };
+            InteractivityExtension interactivity = Program.Client.GetInteractivity();
 
-            foreach (var (card, i) in cards.Select((value, i) => (value, i)))
+            await ctx.DeferAsync();
+
+            //Only making one hand, maybe make into a list of dictionaries?
+            var hands = service.AssignHands(emojiOptions, cards);
+
+            DiscordMember[] players = new[] { player1, player2 }
+                .Select(user => (DiscordMember)user)
+                .ToArray();
+
+            foreach (var hand in hands)
             {
-                hands[emojiOptions[i]] = card;
+                Console.WriteLine(hand.Value.name);
             }
 
             foreach (var player in players)
@@ -80,19 +80,13 @@ namespace Baracata.Commands.Truco
                 }
                 else
                 {
-                    playerReactions[player] = hands[reaction.Result.Emoji];
-                    Console.WriteLine(playerReactions[player]);
-                    Console.WriteLine($"{player.Username} reagiu com {playerReactions[player]}");
+                    playerReactions[player] = hands[reaction.Result.Emoji].name;
+                    service.AnalyzeCards(playerReactions);
                 }
             }
 
-            service.AnalyzeCards(playerReactions);
-
             var responseContent = string.Join("\n", playerReactions.Select(pr => $"{pr.Key.Username} jogou a carta: {pr.Value}"));
             await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(responseContent));
-
         }
-
-
     }
 }

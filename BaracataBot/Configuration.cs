@@ -4,7 +4,6 @@ namespace BaracataBot
 {
     internal class Configuration
     {
-        private Settings settings;
         public Settings Settings { get; set; }
 
         public Configuration() {
@@ -18,6 +17,7 @@ namespace BaracataBot
                 .AddJsonFile("appsettings.json", false, false)
                 .AddJsonFile($"appsettings.{environment}.json", false, true)
                 .Build();
+
             Settings = new Settings()
             {
                 DiscordBotToken = configuration["DiscordBotToken"],

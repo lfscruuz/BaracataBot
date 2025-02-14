@@ -1,4 +1,5 @@
 ﻿using Baracata.Commands.Truco;
+using Baracata.Truco.Models;
 using BaracataBot;
 using DSharpPlus;
 using DSharpPlus.Interactivity;
@@ -34,7 +35,6 @@ namespace Baracata
 
             SlashCommandsExtension slashCommandsConfig = Client.UseSlashCommands();
             slashCommandsConfig.RegisterCommands<TrucoCommands>();
-
 
             await Client.ConnectAsync();
             await Task.Delay(-1);

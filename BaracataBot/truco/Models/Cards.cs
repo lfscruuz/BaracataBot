@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,19 @@ namespace Baracata.Truco.Models
 {
     internal class Cards
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public int Value { get; set; }
-        public string Image {  get; set; }
+        public Guid id { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public int value { get; set; }
+        public string image { get; set; }
+    }
+
+    internal sealed class CardStructure
+    {
+        public Guid id { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public int value { get; set; }
+        public string image { get; set; }
     }
 }

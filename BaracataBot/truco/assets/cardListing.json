@@ -1,166 +1,248 @@
-{
-  "Zap": {
+[
+  {
+    "name": "Zap",
+    "description": "Zap",
     "value": 14,
     "image": "cards/4_of_clubs.png"
   },
-  "7 de copas": {
+  {
+    "name": "7 de copas",
+    "description": "7 de copas",
     "value": 13,
     "image": "cards/7_of_hearts.png"
   },
-  "Espadilhas": {
+  {
+    "name": "Espadilhas",
+    "description": "Espadilhas",
     "value": 12,
     "image": "cards/ace_of_spades.png"
   },
-  "7 de ouros": {
+  {
+    "name": "7 de ouros",
+    "description": "7 de ouros",
     "value": 11,
-    "image": "cards/7_of_diamonds"
+    "image": "cards/7_of_diamonds.png"
   },
-  "3 de paus": {
+  {
+    "name": "3 de paus",
+    "description": "3 de paus",
     "value": 10,
     "image": "cards/3_of_clubs.png"
   },
-  "3 de copas": {
+  {
+    "name": "3 de copas",
+    "description": "3 de copas",
     "value": 10,
     "image": "cards/3_of_hearts.png"
   },
-  "3 de espadas": {
+  {
+    "name": "3 de espadas",
+    "description": "3 de espadas",
     "value": 10,
     "image": "cards/3_of_spades.png"
   },
-  "3 de ouros": {
+  {
+    "name": "3 de ouros",
+    "description": "3 de ouros",
     "value": 10,
     "image": "cards/3_of_diamonds.png"
   },
-  "2 de paus": {
+  {
+    "name": "2 de paus",
+    "description": "2 de paus",
     "value": 9,
     "image": "cards/2_of_clubs.png"
   },
-  "2 de copas": {
+  {
+    "name": "2 de copas",
+    "description": "2 de copas",
     "value": 9,
     "image": "cards/2_of_hearts.png"
   },
-  "2 de espadas": {
+  {
+    "name": "2 de espadas",
+    "description": "2 de espadas",
     "value": 9,
     "image": "cards/2_of_spades.png"
   },
-  "2 de ouros": {
+  {
+    "name": "2 de ouros",
+    "description": "2 de ouros",
     "value": 9,
     "image": "cards/2_of_diamonds.png"
   },
-  "�s de paus": {
+  {
+    "name": "Ás de paus",
+    "description": "Ás de paus",
     "value": 8,
     "image": "cards/ace_of_clubs.png"
   },
-  "�s de copas": {
+  {
+    "name": "Ás de copas",
+    "description": "Ás de copas",
     "value": 8,
     "image": "cards/ace_of_hearts.png"
   },
-  "�s de ouros": {
+  {
+    "name": "Ás de ouros",
+    "description": "Ás de ouros",
     "value": 8,
     "image": "cards/ace_of_diamonds.png"
   },
-  "Rei de paus": {
+  {
+    "name": "Rei de paus",
+    "description": "Rei de paus",
     "value": 7,
     "image": "cards/king_of_clubs2.png"
   },
-  "Rei de copas": {
+  {
+    "name": "Rei de copas",
+    "description": "Rei de copas",
     "value": 7,
     "image": "cards/king_of_hearts2.png"
   },
-  "Rei de espadas": {
+  {
+    "name": "Rei de espadas",
+    "description": "Rei de espadas",
     "value": 7,
     "image": "cards/king_of_spades2.png"
   },
-  "Rei de ouros": {
+  {
+    "name": "Rei de ouros",
+    "description": "Rei de ouros",
     "value": 7,
     "image": "cards/king_of_diamonds2.png"
   },
-  "Valete de paus": {
+  {
+    "name": "Valete de paus",
+    "description": "Valete de paus",
     "value": 6,
     "image": "cards/jack_of_clubs2.png"
   },
-  "Valete de copas": {
+  {
+    "name": "Valete de copas",
+    "description": "Valete de copas",
     "value": 6,
     "image": "cards/jack_of_hearts2.png"
   },
-  "Valete de espadas": {
+  {
+    "name": "Valete de espadas",
+    "description": "Valete de espadas",
     "value": 6,
     "image": "cards/jack_of_spades2.png"
   },
-  "Valete de ouros": {
+  {
+    "name": "Valete de ouros",
+    "description": "Valete de ouros",
     "value": 6,
     "image": "cards/jack_of_diamonds2.png"
   },
-  "Rainha de paus": {
+  {
+    "name": "Rainha de paus",
+    "description": "Rainha de paus",
     "value": 5,
     "image": "cards/queen_of_clubs2.png"
   },
-  "Rainha de copas": {
+  {
+    "name": "Rainha de copas",
+    "description": "Rainha de copas",
     "value": 5,
     "image": "cards/queen_of_hearts2.png"
   },
-  "Rainha de espadas": {
+  {
+    "name": "Rainha de espadas",
+    "description": "Rainha de espadas",
     "value": 5,
     "image": "cards/queen_of_spades2.png"
   },
-  "Rainha de ouros": {
+  {
+    "name": "Rainha de ouros",
+    "description": "Rainha de ouros",
     "value": 5,
     "image": "cards/queen_of_diamonds2.png"
   },
-  "7 de paus": {
+  {
+    "name": "7 de paus",
+    "description": "7 de paus",
     "value": 4,
     "image": "cards/7_of_clubs.png"
   },
-  "7 de espadas": {
+  {
+    "name": "7 de espadas",
+    "description": "7 de espadas",
     "value": 4,
     "image": "cards/7_of_spades.png"
   },
-  "6 de paus": {
+  {
+    "name": "6 de paus",
+    "description": "6 de paus",
     "value": 3,
     "image": "cards/6_of_clubs.png"
   },
-  "6 de copas": {
+  {
+    "name": "6 de copas",
+    "description": "6 de copas",
     "value": 3,
     "image": "cards/6_of_hearts.png"
   },
-  "6 de espadas": {
+  {
+    "name": "6 de espadas",
+    "description": "6 de espadas",
     "value": 3,
     "image": "cards/6_of_spades.png"
   },
-  "6 de ouros": {
+  {
+    "name": "6 de ouros",
+    "description": "6 de ouros",
     "value": 3,
     "image": "cards/6_of_diamonds.png"
   },
-  "5 de paus": {
+  {
+    "name": "5 de paus",
+    "description": "5 de paus",
     "value": 2,
     "image": "cards/5_of_clubs.png"
   },
-  "5 de copas": {
+  {
+    "name": "5 de copas",
+    "description": "5 de copas",
     "value": 2,
     "image": "cards/5_of_hearts.png"
   },
-  "5 de espadas": {
+  {
+    "name": "5 de espadas",
+    "description": "5 de espadas",
     "value": 2,
     "image": "cards/5_of_spades.png"
   },
-  "5 de ouros": {
+  {
+    "name": "5 de ouros",
+    "description": "5 de ouros",
     "value": 2,
     "image": "cards/5_of_diamonds.png"
   },
-  "4 de copas": {
+  {
+    "name": "4 de copas",
+    "description": "4 de copas",
     "value": 1,
     "image": "cards/4_of_hearts.png"
   },
-  "4 de espadas": {
+  {
+    "name": "4 de espadas",
+    "description": "4 de espadas",
     "value": 1,
     "image": "cards/4_of_spades.png"
   },
-  "4 de ouros": {
+  {
+    "name": "4 de ouros",
+    "description": "4 de ouros",
     "value": 1,
     "image": "cards/4_of_diamonds.png"
   },
-  "vira": {
+  {
+    "name": "Vira",
+    "description": "Vira",
     "value": 0,
     "image": "cards/back_of_card.png"
   }
-}
+]
