@@ -1,0 +1,11 @@
+﻿apsettings.json
+	{
+		"DiscordBotToken": ""
+	}
+
+appsettings.Environment.json
+{
+  "ConnectionStrings": {
+    "defaultConnection": "Host=host;Username=username;Password=password;Database=database"
+  }
+}

@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace Baracata.Commands.Truco
@@ -23,6 +24,7 @@ namespace Baracata.Commands.Truco
             var playerReactions = new Dictionary<DiscordMember, string>();
             var service = new TrucoService(ctx);
             var cards = await service.GetCards();
+            var hands = new Dictionary<DiscordMember, Dictionary<DiscordEmoji, CardStructure>>();
 
             DiscordEmoji[] emojiOptions = { DiscordEmoji.FromName(Program.Client, ":one:"),
                                      DiscordEmoji.FromName(Program.Client, ":two:"),
@@ -33,20 +35,16 @@ namespace Baracata.Commands.Truco
 
             await ctx.DeferAsync();
 
-            //Only making one hand, maybe make into a list of dictionaries?
-            var hands = service.AssignHands(emojiOptions, cards);
 
             DiscordMember[] players = new[] { player1, player2 }
                 .Select(user => (DiscordMember)user)
                 .ToArray();
 
-            foreach (var hand in hands)
-            {
-                Console.WriteLine(hand.Value.name);
-            }
-
             foreach (var player in players)
             {
+
+                hands[player] = service.AssignHands(emojiOptions, cards);
+
                 DiscordDmChannel DMChannel = await player.CreateDmChannelAsync();
                 DiscordMessage sentMessage = await DMChannel.SendMessageAsync($"Olá, {player.Username}");
 
@@ -58,6 +56,18 @@ namespace Baracata.Commands.Truco
                 playerMessages[player] = sentMessage;
             }
 
+            foreach (var kvp in hands)
+            {
+                var player = kvp.Key;
+                var dict = kvp.Value;
+
+                foreach (var kvp2 in dict)
+                {
+                    var emoji = kvp2.Key;
+                    var card = kvp2.Value;
+                    Console.WriteLine($"{player.Username} was assigned the card {card.name}");
+                }
+            }
 
             foreach (var kvp in playerMessages)
             {
@@ -80,10 +90,19 @@ namespace Baracata.Commands.Truco
                 }
                 else
                 {
-                    playerReactions[player] = hands[reaction.Result.Emoji].name;
-                    service.AnalyzeCards(playerReactions);
+                    try
+                    {
+                        var randomvariable = hands[player][reaction.Result.Emoji].name;
+                        Console.WriteLine(randomvariable); // Use WriteLine instead of Write for better visibility
+                        playerReactions[player] = randomvariable;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}\n{ex.StackTrace}");
+                    }
                 }
             }
+            service.AnalyzeCards(playerReactions);
 
             var responseContent = string.Join("\n", playerReactions.Select(pr => $"{pr.Key.Username} jogou a carta: {pr.Value}"));
             await ctx.EditResponseAsync(new DiscordWebhookBuilder().WithContent(responseContent));

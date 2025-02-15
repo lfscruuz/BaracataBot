@@ -41,17 +41,17 @@ namespace Baracata.Truco.Services
 
         public Dictionary<DiscordEmoji, CardStructure> AssignHands(DiscordEmoji[] emojiOptions, List<CardStructure> cards)
         {
-            var hands = new Dictionary<DiscordEmoji, CardStructure>();
+            var hands = new Dictionary<DiscordMember, Dictionary<DiscordEmoji, CardStructure>>();
+            var hand = new Dictionary<DiscordEmoji, CardStructure>();
 
             foreach (var (emoji, i) in emojiOptions.Select((value, i) => (value, i)))
             {
                 var rnd = new Random();
                 int r =  rnd.Next(cards.Count);
-
-                hands[emoji] = cards[r];
+                hand[emoji] = cards[r];
             }
 
-            return hands;
+            return hand;
         }
         public void AnalyzeCards(Dictionary<DiscordMember, string> playerReactions)
         {
